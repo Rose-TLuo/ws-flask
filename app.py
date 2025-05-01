@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # 添加这行代码来启用CORS，对所有路由开放跨域
 
 @app.route("/")
 def home():
@@ -8,7 +10,6 @@ def home():
 
 @app.route("/api/submit_order", methods=["POST"])
 def submit_order():
-    # 假设前端用 fetch 或表单 post 发送数据
     boss_id = request.form.get("boss-id")
     service_type = request.form.get("service-type")
     # 其他字段同理……
